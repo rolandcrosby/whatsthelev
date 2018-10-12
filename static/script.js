@@ -1,18 +1,39 @@
-document.querySelectorAll(".input input").forEach(function(el) {
-  el.addEventListener("keyup", function(e) {
-    renderTransform(
-      showTransform(
-        document.querySelector("#src").value,
-        document.querySelector("#dest").value
-      )
-    );
+window.onload = function() {
+  var parts = window.location.pathname.split("/");
+  if (parts.length >= 3 && parts[1] != "-") {
+    document.querySelector("#src").value = decodeURIComponent(parts[1]);
+    document.querySelector("#dest").value = decodeURIComponent(parts[2]);
+    update();
+  }
+  document.querySelectorAll(".input input").forEach(function(el) {
+    el.addEventListener("keyup", function(e) {
+      update();
+    });
   });
-});
+};
+
+function update() {
+  var src = document.querySelector("#src").value;
+  var dst = document.querySelector("#dest").value;
+  var enc = [encodeURIComponent(src), encodeURIComponent(dst)];
+  var path = enc.join("/");
+  history.replaceState(enc, path, "/" + path);
+
+  renderTransform(showTransform(src, dst));
+}
 
 function renderTransform(steps) {
   var out = "";
   for (var i = 0; i < steps.length; i++) {
     out += `<div class="iteration"><div class="number number${i}">${i}</div><div class="text">`;
+    if (steps[i][0]) {
+      steps[i][1] = steps[i][1].map(function(s) {
+        var out = s.replace(/&/g, "&amp;");
+        out = out.replace(/</g, "&lt;");
+        out = out.replace(/>/g, "&gt;");
+        return out;
+      });
+    }
     switch (steps[i][0]) {
       case false:
         out += steps[i][1][0];
