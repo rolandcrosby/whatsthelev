@@ -78,6 +78,9 @@ h1 input {
   background: rgba(192, 45, 0, 0.3);
 }
 
+::selection {
+  background: rgba(192, 45, 0, 0.3);
+}
 
 .iteration .delete::before {
   content: " ";
