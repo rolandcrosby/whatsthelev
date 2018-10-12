@@ -19,6 +19,7 @@ body {
 }
 
 h1 {
+  font-weight: normal;
   font-family: 'gastromond';
   font-size: 60px;
   line-height: 55px;
