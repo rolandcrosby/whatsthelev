@@ -1,11 +1,89 @@
-/* CSS files add styling rules to your content */
+* {
+  box-sizing: border-box;
+}
 
+html,
 body {
-  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
-  margin: 2em;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  padding: 30px;
+}
+
+.input {
+  border-top: 20px solid #000;
+  padding-top: 15px;
+  margin-top: 5px;
 }
 
 h1 {
-  font-style: italic;
-  color: #373fff;
+  font-family: 'gastromond';
+  font-size: 60px;
+  line-height: 55px;
+  margin: 0;
+}
+
+h1 input {
+  font-size: inherit;
+  font-family: 'prestige-elite-std';
+  border: 1.5px solid #000;
+  border-width: 0 0 1.5px;
+  width: 20ex;
+}
+
+.output {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  grid-auto-rows: 60px;
+  grid-gap: 20px;
+  margin-top: 20px;
+  border-top: 3px double #000;
+  padding-top: 10px;
+}
+.iteration {
+  display: contents;
+}
+
+.iteration .number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'gastromond';
+  background: #000;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 30px;
+}
+
+.iteration .number0 {
+  background: transparent;
+}
+
+.iteration .text {
+  font-family: 'prestige-elite-std';
+  font-size: 60px;
+  line-height: 60px;
+}
+
+.iteration .replace,
+.iteration .insert {
+  color: rgb(192, 45, 0);
+}
+
+.iteration .replace.space,
+.iteration .insert.space {
+  color: rgb(192, 45, 0);
+  background: rgba(192, 45, 0, 0.3);
+}
+
+
+.iteration .delete::before {
+  content: " ";
+  width: 0;
+  display: inline-block;
+  overflow: hidden;
+  margin-right: -2px;
+  border-left: 2px solid rgb(192, 45, 0);
 }
